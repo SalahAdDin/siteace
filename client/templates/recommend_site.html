@@ -1,0 +1,37 @@
+<template name="recommend_site">
+    <div class="modal fade" tabindex="-1" role="alertdialog" id="website_recommend">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                {{#EasySearch.Each index=websiteIndex}}
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">{{title}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h6 class="text-right">{{momentFormat createdOn}}</h6>
+                        <p>
+                            {{description}}
+                        </p>
+                        <a href="/site/{{_id}}">See more...</a>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <span class="badge alert-success">{{votes.Up}}</span>
+                        {{#if currentUser}}
+                            <div class="btn-group" role="group" aria-label="...">
+                                <button class="btn btn-default js-upvote">
+                                    <span class="fa fa-thumbs-o-up" aria-hidden="true"></span>
+                                </button>
+                                <button class="btn btn-default js-downvote">
+                                    <span class="fa fa-thumbs-o-down" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        {{/if}}
+                        <span class="badge alert-danger">{{votes.Down}}</span>
+                    </div>
+                {{/EasySearch.Each}}
+            </div>
+        </div>
+    </div>
+</template>

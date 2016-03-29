@@ -1,0 +1,28 @@
+<template name="sites_detailed">
+    <div class="page-header">
+        <h1><a href="{{url}}">{{title}}</a>
+            <small>{{momentFormat createdOn}}</small>
+            <div class="pull-right">
+                <span class="badge alert-success">{{votes.Up}}</span>
+                {{#if currentUser}}
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button class="btn btn-default js-upvote">
+                            <span class="fa fa-thumbs-o-up" aria-hidden="true"></span>
+                        </button>
+                        <button class="btn btn-default js-downvote">
+                            <span class="fa fa-thumbs-o-down" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                {{/if}}
+                <span class="badge alert-danger">{{votes.Down}}</span>
+            </div>
+        </h1>
+    </div>
+    <p>
+        {{description}}
+    </p>
+    <div class="comment-section">
+        <!-- TODO: Passed some seconds of inactive session, get and error with comments-ui -->
+        {{> commentsBox id=_id}}
+    </div>
+</template>

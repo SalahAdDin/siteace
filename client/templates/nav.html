@@ -1,0 +1,35 @@
+<template name="nav">
+    <!-- navbar  - you will be putting the login functions here -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container"> <!-- -fluid"> -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">
+                    Site Ace
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="sign-up-buttons">
+                        {{> loginButtons}}
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        {{> EasySearch.Input index=websiteIndex attributes=inputAttributes}}
+                    </div>
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i>Submit</button>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        {{#if currentUser}}
+                            <button class="btn btn-default js-show-website-form">
+                                <span class="fa fa-plus" aria-hidden="true"></span>
+                            </button>
+                        {{/if}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</template>

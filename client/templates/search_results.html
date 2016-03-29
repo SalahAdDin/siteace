@@ -1,0 +1,63 @@
+<template name="search_results">
+    {{#EasySearch.IfInputEmpty index=websiteIndex }}
+        <div class="alert alert-warning" role="alert">
+            You didn't put ahything for searching.Try to searching some like "University"!
+        </div>
+    {{else}}
+        {{#if resultsCount}}
+            <div class="alert alert-warning" role="alert">{{resultsCount}} results found.</div>
+        {{/if}}
+    {{/EasySearch.IfInputEmpty}}
+
+    {{#EasySearch.IfSearching index=websiteIndex }}
+        <div class="alert alert-info">Searching</div>
+    {{/EasySearch.IfSearching }}
+
+    <ul class="list-group">
+        {{#EasySearch.Each index=websiteIndex }}
+            <li class="list-group-item"><a href="/site/{{_id}}">{{title}}</a><span
+                    class="badge alert-success">{{votes.Up}}</span><span
+                    class="badge alert-danger">{{votes.Down}}</span></li>
+        {{/EasySearch.Each}}
+    </ul>
+
+    {{#EasySearch.IfNoResults index=websiteIndex }}
+        <div class="alert alert-danger">
+            We can't find anything that match with your query. Try search again!
+        </div>
+    {{else}}
+        {{#if title}}
+            <div class="details">
+                <div class="name">{{title}}</div>
+                <span class="badge alert-success">{{votes.Up}}</span>
+                {{#if currentUser}}
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button class="btn btn-default js-upvote">
+                            <span class="fa fa-thumbs-o-up" aria-hidden="true"></span>
+                        </button>
+                        <button class="btn btn-default js-downvote">
+                            <span class="fa fa-thumbs-o-down" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                {{/if}}
+                <span class="badge alert-danger">{{votes.Down}}</span>
+            </div>
+        {{else}}
+            <div class="alert alert-info">Click a website to see his detail page!</div>
+        {{/if}}
+    {{/EasySearch.IfNoResults }}
+
+    {{> EasySearch.Pagination index=websiteIndex maxPages=10 }}
+    {{! > EasySearch.LoadMore index=index }}
+
+    {{#if showMore}}
+        {{> EasySearch.Input name="mini-index" index=websiteIndex attributes=inputAttributes }}
+
+        <ul>
+            {{#EasySearch.Each name="mini-index" index=websiteIndex }}
+                <li>{{title}}</li>
+            {{/EasySearch.Each}}
+        </ul>
+    {{/if}}
+
+</template>

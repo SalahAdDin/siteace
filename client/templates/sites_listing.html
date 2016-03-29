@@ -1,0 +1,43 @@
+<template name="sites_listing">
+    <ol>
+        {{#each websites}}
+            {{>website_item}}
+        {{/each}}
+    </ol>
+</template>
+
+<!-- template that displays individual website entries -->
+<template name="website_item">
+    <li class="site-listing">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>
+                    <a href="{{url}}">{{title}}</a>
+                </h4>
+            </div>
+            <div class="panel-body">
+                <h6 class="text-right">{{momentFormat createdOn}}</h6>
+                <p>
+                    {{description}}
+                </p>
+                <a href="/site/{{_id}}">See more...</a>
+
+                <div class="pull-right">
+                    <span class="badge alert-success">{{votes.Up}}</span>
+                    {{#if currentUser}}
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button class="btn btn-default js-upvote">
+                                <span class="fa fa-thumbs-o-up" aria-hidden="true"></span>
+                            </button>
+                            <button class="btn btn-default js-downvote">
+                                <span class="fa fa-thumbs-o-down" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    {{/if}}
+                    <span class="badge alert-danger">{{votes.Down}}</span>
+                </div>
+            </div>
+        </div>
+        <!-- you will be putting your up and down vote buttons in here! -->
+    </li>
+</template>

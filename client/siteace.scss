@@ -1,0 +1,39 @@
+@import "unit";
+
+// Variables
+$light-gray: #eee;
+
+$border-solid-light-gray: 1px solid $light-gray;
+
+// Globals
+
+html {
+  font-size: 16px;
+}
+
+body {
+  padding-top: rem-calc(60);
+}
+
+.navbar-right {
+  margin-right: 0;
+  > li:first-child {
+    margin: rem-calc(8);
+  }
+}
+
+.sign-up-buttons {
+  margin: rem-calc(15);
+}
+
+.site-listing {
+  .panel-heading {
+    a {
+      color: #FFF;
+    }
+  }
+}
+
+.comments-box {
+  border-top: $border-solid-light-gray;
+}
