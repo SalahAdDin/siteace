@@ -16,7 +16,12 @@ Comments.ui.config({
 
 Template.nav.helpers({
     inputAttributes: function () {
-        return { 'class': 'form-control', 'placeholder': 'Start searching...', 'name':"searchBox", 'id': "js-searchBox" };
+        return {
+            'class': 'form-control',
+            'placeholder': 'Start searching...',
+            'name': "searchBox",
+            'id': "js-searchBox"
+        };
     }
 });
 
@@ -58,8 +63,8 @@ Template.nav.events({
         console.log(searchQuery);
 
         // Session.set('searchQuery', searchQuery);
-        if(searchQuery!=''){
-            FlowRouter.go('/results/'+searchQuery);
+        if (searchQuery != '') {
+            FlowRouter.go('/results/' + searchQuery);
         }
 
         return false;
@@ -78,11 +83,11 @@ Template.website_item.events({
 
         console.log(keywords);
 
-        websiteIndex = WebsitesIndex.getComponentMethods().search(keywords, { limit: 1 });
+        // websiteIndex = WebsitesIndex.getComponentMethods().search(keywords, { limit: 1 });
 
-        console.log(websiteIndex);
+        // console.log(websiteIndex);
 
-        $('#website_recommend').modal('show');
+        // $('#website_recommend').modal('show');
 
         // TODO: pass the search results to the recommend template
         // TODO: implements this method with detailed view
@@ -110,6 +115,10 @@ Template.add_form.events({
         var url = event.target.url.value;
 
         console.log("The url they entered is: " + url);
+
+        if (!isValidUrl(url)) {
+            alert("Please enter a valid URL. http:// or  https://  required.");
+        } else {
 
         extractMeta(url, function (err, res) {
             console.log(res);
@@ -145,7 +154,7 @@ Template.add_form.events({
                     url: url,
                     description: description,
                     keywords: keywords,
-                    votes:{
+                    votes: {
                         Up: 0,
                         Down: 0
                     },
@@ -155,6 +164,7 @@ Template.add_form.events({
             }
         });
 
+        }
         $('#website_form').modal('hide');
         return false;
 
